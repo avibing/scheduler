@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Schedule Job</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Schedule Job</h1>
+        <form th:action="@{/jobs/schedule}" method="post" th:object="${job}">
+            <div class="form-group">
+                <label for="name">Job Name</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" th:field="*{description}">
+            </div>
+            <div class="form-group">
+                <label for="cronExpression">Cron Expression</label>
+                <input type="text" class="form-control" id="cronExpression" th:field="*{cronExpression}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Schedule</button>
+        </form>
+    </div>
+</body>
+</html>
