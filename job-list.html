@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Job Scheduler</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Job Scheduler</h1>
+        <a href="/jobs/schedule" class="btn btn-primary mb-3">Schedule New Job</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Cron Expression</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="job : ${jobs}">
+                    <td th:text="${job.id}"></td>
+                    <td th:text="${job.name}"></td>
+                    <td th:text="${job.description}"></td>
+                    <td th:text="${job.cronExpression}"></td>
+                    <td>
+                        <form th:action="@{/jobs/trigger/{id}(id=${job.id})}" method="post">
+                            <button type="submit" class="btn btn-warning">Trigger</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
